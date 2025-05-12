@@ -15,6 +15,11 @@ mvn spring-boot:run
 mvn test
 ```
 
+### Para compilar la aplicación sin correr los test
+```bash
+mvn install -DskipTests
+```
+
 ## Configuración del proyecto
 
 El proyecto utiliza un archivo `application.properties` o `application.yml` para manejar las configuraciones. Este archivo se encuentra en el directorio `src/main/resources`.
