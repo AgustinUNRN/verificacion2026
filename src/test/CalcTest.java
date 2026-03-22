@@ -114,4 +114,34 @@ public class CalcTest {
         Calc calc = new Calc();
         calc.multiplicar(-2147483648, -1);
     }
+
+    // ------------------------------------------------------------------------------------
+
+    @Test
+    public void testDividirPositivos() {
+        Calc calc = new Calc();
+        Assert.assertEquals(4, calc.dividir(8, 2));
+        Assert.assertEquals(3, calc.dividir(7, 2));
+    }
+
+    @Test
+    public void testDividirConCeroYNegativos() {
+        Calc calc = new Calc();
+        Assert.assertEquals(0, calc.dividir(0, 5));
+        Assert.assertEquals(0, calc.dividir(0, -5));
+        Assert.assertEquals(-4, calc.dividir(8, -2));
+        Assert.assertEquals(4, calc.dividir(-8, -2));
+    }
+
+    @Test(expected = ArithmeticException.class)
+    public void testDividirPorCero() {
+        Calc calc = new Calc();
+        calc.dividir(8, 0);
+    }
+
+    @Test(expected = ArithmeticException.class)
+    public void testDividirLimiteInferiorInt() {
+        Calc calc = new Calc();
+        calc.dividir(-2147483648, -1);
+    }
 }
