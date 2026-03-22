@@ -75,4 +75,43 @@ public class CalcTest {
         calc.restar(-2147483648, 1);
     }
 
+    // ------------------------------------------------------------------------------------
+
+    @Test
+    public void testMultiplicarPositivos() {
+        Calc calc = new Calc();
+        Assert.assertEquals(12, calc.multiplicar(3, 4));
+        Assert.assertEquals(9, calc.multiplicar(9, 1));
+    }
+
+    @Test
+    public void testMultiplicarConCero() {
+        Calc calc = new Calc();
+        Assert.assertEquals(0, calc.multiplicar(9, 0));
+    }
+
+    @Test
+    public void testMultiplicarCeroPorNegativo() {
+        Calc calc = new Calc();
+        Assert.assertEquals(0, calc.multiplicar(0, -4));
+    }
+
+    @Test
+    public void testMultiplicarConNegativos() {
+        Calc calc = new Calc();
+        Assert.assertEquals(-5, calc.multiplicar(5, -1));
+        Assert.assertEquals(24, calc.multiplicar(-3, -8));
+    }
+
+    @Test(expected = ArithmeticException.class)
+    public void testMultiplicarOverflowPositivoInt() {
+        Calc calc = new Calc();
+        calc.multiplicar(2147483647, 2);
+    }
+
+    @Test(expected = ArithmeticException.class)
+    public void testMultiplicarOverflowNegativoInt() {
+        Calc calc = new Calc();
+        calc.multiplicar(-2147483648, -1);
+    }
 }
