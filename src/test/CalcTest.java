@@ -40,4 +40,39 @@ public class CalcTest {
         calc.sumar(-1, -2147483648);
     }
 
+    // ------------------------------------------------------------------------------------
+
+    @Test
+    public void testRestarPositivos() {
+        Calc calc = new Calc();
+        Assert.assertEquals(4, calc.restar(7, 3));
+        Assert.assertEquals(-4, calc.restar(3, 7));
+    }
+
+    @Test
+    public void testRestarConCero() {
+        Calc calc = new Calc();
+        Assert.assertEquals(9, calc.restar(9, 0));
+        Assert.assertEquals(-4, calc.restar(0, 4));
+    }
+
+    @Test
+    public void testRestarConNegativos() {
+        Calc calc = new Calc();
+        Assert.assertEquals(7, calc.restar(5, -2));
+        Assert.assertEquals(5, calc.restar(-3, -8));
+    }
+
+    @Test(expected = ArithmeticException.class)
+    public void testRestarOverflowPositivoInt() {
+        Calc calc = new Calc();
+        calc.restar(2147483647, -1);
+    }
+
+    @Test(expected = ArithmeticException.class)
+    public void testRestarOverflowNegativoInt() {
+        Calc calc = new Calc();
+        calc.restar(-2147483648, 1);
+    }
+
 }

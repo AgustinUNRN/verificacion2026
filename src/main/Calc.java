@@ -18,4 +18,21 @@ public class Calc {
         return (int) resultado;
     }
 
+    // ------------------------------------------------------------------------------------
+
+    public int restar(int a, int b) {
+        long resultado = (long) a - (long) b;
+
+        if (resultado > Integer.MAX_VALUE) { // evaluamos que no se produzca un overflow positivo
+            throw new ArithmeticException(
+                    ERROR_OVERFLOW_MAX);
+        }
+        if (resultado < Integer.MIN_VALUE) { // evaluamos que no se produzca un overflow negativo
+            throw new ArithmeticException(
+                    ERROR_OVERFLOW_MIN);
+        }
+
+        return (int) resultado;
+    }
+
 }
