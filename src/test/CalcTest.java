@@ -14,4 +14,18 @@ public class CalcTest {
 
     }
 
+    @Test
+    public void testSumarConCero() {
+        Calc calc = new Calc();
+        Assert.assertEquals(9, calc.sumar(9, 0));
+        Assert.assertEquals(-4, calc.sumar(0, -4));
+    }
+
+    @Test
+    public void testSumarConNegativos() {
+        Calc calc = new Calc();
+        Assert.assertEquals(0, calc.sumar(-1, 1));
+        Assert.assertEquals(-11, calc.sumar(-3, -8));
+    }
+
 }
