@@ -144,4 +144,54 @@ public class CalcTest {
         Calc calc = new Calc();
         calc.dividir(-2147483648, -1);
     }
+
+    // ------------------------------------------------------------------------------------
+
+    @Test
+    public void testPotenciaPositivos() {
+        Calc calc = new Calc();
+        Assert.assertEquals(8, calc.potencia(2, 3));
+        Assert.assertEquals(1, calc.potencia(5, 0));
+        Assert.assertEquals(7, calc.potencia(7, 1));
+    }
+
+    @Test
+    public void testPotenciaConCeroYNegativos() {
+        Calc calc = new Calc();
+        Assert.assertEquals(0, calc.potencia(0, 4));
+        Assert.assertEquals(16, calc.potencia(-2, 4));
+        Assert.assertEquals(-8, calc.potencia(-2, 3));
+        Assert.assertEquals(-1, calc.potencia(-1, 3));
+        Assert.assertEquals(1, calc.potencia(-1, 4));
+    }
+
+    @Test
+    public void testPotenciaValoresGrandes() {
+        Calc calc = new Calc();
+        Assert.assertEquals(1000000, calc.potencia(10, 6));
+    }
+
+    @Test(expected = ArithmeticException.class)
+    public void testPotenciaOverflowPositivoInt() {
+        Calc calc = new Calc();
+        calc.potencia(2, 31);
+    }
+
+    @Test(expected = ArithmeticException.class)
+    public void testPotenciaExponenteNegativo() {
+        Calc calc = new Calc();
+        calc.potencia(2, -1);
+    }
+
+    @Test(expected = ArithmeticException.class)
+    public void testPotenciaBaseCeroExponenteCero() {
+        Calc calc = new Calc();
+        calc.potencia(0, 0);
+    }
+
+    @Test
+    public void testPotenciaLimiteInferiorInt() {
+        Calc calc = new Calc();
+        Assert.assertEquals(-2147483648, calc.potencia(-2, 31));
+    }
 }
