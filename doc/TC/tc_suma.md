@@ -2,14 +2,16 @@
 
 ## Resumen de casos
 
-| ID        | Entrada (a, b) | Resultado esperado | Tipo      |
-| --------- | -------------- | ------------------ | --------- |
-| TC-SUM-01 | (2, 2)         | 4                  | Normal    |
-| TC-SUM-02 | (5, 7)         | 12                 | Normal    |
-| TC-SUM-03 | (9, 0)         | 9                  | Con cero  |
-| TC-SUM-03 | (0, -4)        | -4                 | Con cero  |
-| TC-SUM-04 | (-1, 1)        | 0                  | Mixto     |
-| TC-SUM-05 | (-3, -8)       | -11                | Negativos |
+| ID        | Entrada (a, b)    | Resultado esperado  | Tipo                 |
+| --------- | ----------------- | ------------------- | -------------------- |
+| TC-SUM-01 | (2, 2)            | 4                   | Normal               |
+| TC-SUM-02 | (5, 7)            | 12                  | Normal               |
+| TC-SUM-03 | (9, 0)            | 9                   | Con cero             |
+| TC-SUM-03 | (0, -4)           | -4                  | Con cero             |
+| TC-SUM-04 | (-1, 1)           | 0                   | Mixto                |
+| TC-SUM-05 | (-3, -8)          | -11                 | Negativos            |
+| TC-SUM-07 | (1, 2147483647)   | ArithmeticException | Error (overflow max) |
+| TC-SUM-08 | (-1, -2147483648) | ArithmeticException | Error (overflow min) |
 
 ---
 
@@ -58,3 +60,19 @@
 **Dado** que tengo que sumar dos numeros negativos.
 **Cuando** ingreso los numeros -3 y -8.
 **Entonces** espero que el resultado sea -11.
+
+---
+
+## Caso TC-SUM-07: Suma con overflow positivo de int
+
+**Dado** que tengo que sumar un entero al valor maximo permitido por Java.
+**Cuando** ingreso los numeros 1 y 2147483647.
+**Entonces** espero una excepcion ArithmeticException por overflow de int.
+
+---
+
+## Caso TC-SUM-08: Suma con overflow negativo de int
+
+**Dado** que tengo que sumar un entero negativo al valor minimo permitido por Java.
+**Cuando** ingreso los numeros -1 y -2147483648.
+**Entonces** espero una excepcion ArithmeticException por overflow de int.

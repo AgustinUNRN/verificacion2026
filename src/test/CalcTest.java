@@ -28,4 +28,16 @@ public class CalcTest {
         Assert.assertEquals(-11, calc.sumar(-3, -8));
     }
 
+    @Test(expected = ArithmeticException.class)
+    public void testSumarOverflowPositivoInt() {
+        Calc calc = new Calc();
+        calc.sumar(1, 2147483647);
+    }
+
+    @Test(expected = ArithmeticException.class)
+    public void testSumarOverflowNegativoInt() {
+        Calc calc = new Calc();
+        calc.sumar(-1, -2147483648);
+    }
+
 }
