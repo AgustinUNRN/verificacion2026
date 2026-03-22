@@ -79,6 +79,10 @@ public class Calc {
     // ------------------------------------------------------------------------------------
 
     public int potencia(int a, int b) throws ArithmeticException {
+        if (b < 0) // no se puede elevar a una potencia negativa
+            throw new ArithmeticException(ERROR_POTENCIA_NEGATIVA);
+        if (a == 0 && b == 0) // no se puede elevar 0 a la potencia de 0
+            throw new ArithmeticException(ERROR_POTENCIA_CERO_CERO);
         int resultado = 1;
         for (int i = 0; i < b; i++) {
             resultado = multiplicar(resultado, a);
