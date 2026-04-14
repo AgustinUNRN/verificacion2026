@@ -1,43 +1,96 @@
-# integration-test
+# Documentación del Proyecto Spring Boot CRUD
 
-## Requisitos previos
-- Java 17 o superior
-- Maven 3.8.1 o superior
+## Descripción General
 
-## Compilar el proyecto
-Para compilar el proyecto, ejecuta el siguiente comando en la raíz del proyecto:
+Este proyecto es una aplicación de demostración construida con Spring Boot que implementa operaciones CRUD (Crear, Leer, Actualizar, Eliminar) para gestionar productos en un sistema de inventario. La aplicación utiliza Spring Data JPA para la persistencia de datos y proporciona una API REST para interactuar con los recursos.
+
+## Tecnologías Utilizadas
+
+- **Java 17**: Lenguaje de programación principal
+- **Spring Boot 2.6.7**: Framework para el desarrollo de aplicaciones
+- **Spring Data JPA**: Para el acceso a datos
+- **MySQL**: Base de datos principal
+- **H2 Database**: Base de datos en memoria para pruebas
+- **Maven**: Gestión de dependencias y construcción
+- **Lombok**: Para reducir el código boilerplate
+
+## Arquitectura
+
+La aplicación sigue el patrón de arquitectura MVC (Model-View-Controller) con las siguientes capas:
+
+- **Controller**: Maneja las solicitudes HTTP y respuestas
+- **Service**: Contiene la lógica de negocio
+- **Repository**: Interfaz con la base de datos
+- **Entity**: Representa las tablas de la base de datos
+
+## Entidades
+
+El proyecto maneja las siguientes entidades principales:
+
+- **Product**: Representa los productos en el inventario
+- **Provider**: Representa los proveedores de productos
+- **Sale**: Representa las ventas realizadas
+
+## Configuración
+
+La aplicación se configura a través de archivos `application.properties` y `application.yml` ubicados en `src/main/resources/`.
+
+### Configuración de Base de Datos
+
+Por defecto, la aplicación está configurada para usar MySQL. Para desarrollo local, se puede usar H2 cambiando la configuración.
+
+## Ejecución
+
+Para ejecutar la aplicación:
 
 ```bash
-mvn clean install
-
 mvn spring-boot:run
+```
 
+La aplicación estará disponible en `http://localhost:9191`
+
+## API REST
+
+La API proporciona endpoints para gestionar productos. Ver [documentación de API](api.md) para más detalles.
+
+## Pruebas
+
+El proyecto incluye pruebas unitarias e integración. Para ejecutar las pruebas:
+
+```bash
 mvn test
 ```
 
-### Para compilar la aplicación sin correr los test
-```bash
-mvn install -DskipTests
+## Estructura del Proyecto
+
+```
+src/
+├── main/
+│   ├── java/
+│   │   └── com/unrn/vv/crud/
+│   │       ├── SpringBootCrudApplication.java
+│   │       ├── controller/
+│   │       │   └── ProductController.java
+│   │       ├── entity/
+│   │       │   ├── Product.java
+│   │       │   ├── Provider.java
+│   │       │   └── Sale.java
+│   │       ├── repository/
+│   │       │   └── ProductRepository.java
+│   │       └── service/
+│   │           └── ProductService.java
+│   └── resources/
+│       ├── application.properties
+│       └── application.yml
+└── test/
+    ├── java/
+    │   └── com/unrn/vv/crud/
+    │       ├── SpringBootCrudApplicationTests.java
+    │       └── TestH2Repository.java
+    └── resources/
+        └── application.properties
 ```
 
-## Configuración del proyecto
+## Contribución
 
-El proyecto utiliza un archivo `application.properties` o `application.yml` para manejar las configuraciones. Este archivo se encuentra en el directorio `src/main/resources`.
-
-### Configuraciones comunes
-
-Algunas configuraciones comunes que puedes ajustar incluyen:
-
-- **Puerto del servidor**: Puedes cambiar el puerto en el que se ejecuta la aplicación modificando la propiedad `server.port`. Por ejemplo:
-  ```properties
-    server.port=8081
-    spring.datasource.url=jdbc:mysql://localhost:3306/nombre_base_datos
-    spring.datasource.username=usuario
-    spring.datasource.password=contraseña
-
-
-### Perfiles de configuración
-Podes definir diferentes perfiles de configuración (por ejemplo, dev, test, prod) utilizando archivos como application-dev.properties o application-prod.properties. Para activar un perfil específico, usa la propiedad spring.profiles.active:
-
-```properties
-    spring.profiles.active=dev
+Para contribuir al proyecto, asegúrate de seguir las mejores prácticas de desarrollo y ejecutar todas las pruebas antes de enviar cambios.
